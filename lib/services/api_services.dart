@@ -12,7 +12,7 @@ class HttpHelper {
   Future<Weather> getWeather(String location) async {
     Map<String, dynamic> parameters = {'q': location, 'appid': apiKey};
     Uri uri = Uri.https(authority, path, parameters);
-    print(uri);
+    print('URI to get data is: $uri');
     http.Response response = await http.get(uri);
 
     Map<String, dynamic> data = json.decode(response.body);
@@ -22,18 +22,15 @@ class HttpHelper {
 }
 //http://localhost:3000/users
 class UserHelper{
+  //  replace localhost reference with local machine IP
   final String authority='192.168.1.47:3000';
   final String path='users';
 
   Future<User> getUsers() async {
     Uri uri=Uri.http(authority, path);
-    print(uri);
+    print('URI to get data is: $uri');
     http.Response response = await http.get(uri);
-    //var encodedJSON=json.encode(response.body);
-    //List<Map<String,dynamic>>
     List<dynamic> userList=json.decode(response.body);
-    //Type type=userList.runtimeType;
-    //print(type);
     User usr=User.fromJson(userList);
     return usr;
   }

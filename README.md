@@ -1,2 +1,4 @@
 # butterfly
- Flutter App - with Go API and weather API
+ Flutter App - with Go API and openweathermap.org API
+
+
