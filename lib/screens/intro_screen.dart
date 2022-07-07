@@ -1,19 +1,24 @@
 import 'package:butterfly/shared/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import '../shared/menu_drawer.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
+ApplicationInformation appInfo = ApplicationInformation();
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    getbuildInfo();
+    // print('App Version: ' + app.appVersion);
+    // print('Application Name: ' + app.appName.toUpperCase());
+    // print('Application Build Number: ' + app.buildNumber);
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
                 backgroundColor: Colors.blueGrey,
-                title: const Text(
-                  'Butterfly 3',
-                )),
+                title: Text(' ' + appInfo.appName.toUpperCase() + ' Version: ' + appInfo.buildNumber,)),
             drawer: MenuDrawer(),
             body: Container(
               decoration: const BoxDecoration(
@@ -43,4 +48,20 @@ class IntroScreen extends StatelessWidget {
               //)),
             )));
   }
+
+  Future getbuildInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    appInfo.appName = packageInfo.appName;
+    appInfo.packageName = packageInfo.packageName;
+    appInfo.appVersion = packageInfo.version;
+    appInfo.buildNumber = packageInfo.buildNumber;
+  }
+}
+
+//  Class to retrieve and display application information
+class ApplicationInformation {
+  String appName = '';
+  String packageName = '';
+  String appVersion = '';
+  String buildNumber = '';
 }

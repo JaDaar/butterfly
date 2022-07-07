@@ -1,5 +1,5 @@
 import 'package:butterfly/screens/user_screen.dart';
-import 'package:butterfly/screens/weather.dart';
+import 'package:butterfly/screens/weather_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/intro_screen.dart';
 import '../screens/weight_tracker_screen.dart';
